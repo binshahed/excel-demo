@@ -2,7 +2,7 @@
 
 const CommonButton = ({ children, ...args }) => {
   return (
-    <button {...args} className="common-button">
+    <button {...args} className="common-button flex">
       {children}
     </button>
   )

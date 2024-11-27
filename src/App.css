@@ -4,6 +4,37 @@
   @apply bg-primary text-secondary py-4 px-8 font-semibold rounded-full hover:scale-90 ease-in duration-150;
 }
 
+.footer-link ul li {
+  @apply my-4;
+}
+.footer-link ul li a {
+  @apply text-gray-400 hover:text-secondary hover:underline;
+}
+
+/* Sliding animation */
+.slide-enter {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.slide-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition:
+    transform 500ms ease-in-out,
+    opacity 500ms ease-in-out;
+}
+.slide-exit {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.slide-exit-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition:
+    transform 500ms ease-in-out,
+    opacity 500ms ease-in-out;
+}
+
 /* Hide vertical scrollbar while allowing scrolling */
 .intro_slide {
   scrollbar-width: none; /* For Firefox */
