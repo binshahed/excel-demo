@@ -1,3 +1,9 @@
+/* buttons  */
+
+.common-button {
+  @apply bg-primary text-secondary py-4 px-8 font-semibold rounded-full hover:scale-90 ease-in duration-150;
+}
+
 /* Hide vertical scrollbar while allowing scrolling */
 .intro_slide {
   scrollbar-width: none; /* For Firefox */
@@ -7,7 +13,6 @@
 .intro_slide::-webkit-scrollbar {
   display: none; /* For Chrome, Safari, and Opera */
 }
-
 
 .panel {
   height: 100vh;
