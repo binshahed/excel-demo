@@ -11,6 +11,8 @@ import TeamSection from './features/Team/TeamSection'
 import PlatformTour from './features/PlatformTour/PlatformTour'
 import Footer from './components/common/Footer'
 import Testimonial from './features/Testimonial/Testimonial'
+import NabBar from './components/common/NabBar'
+import WhyRemoteOffice from './features/WhyRemoteOffice/WhyRemoteOffice'
 
 function App() {
   useEffect(() => {
@@ -19,16 +21,15 @@ function App() {
   }, [])
   return (
     <div className="font-poppins">
+      <NabBar />
       <HeroSection />
       <CarouselSection />
       <TopVotedTalentSection />
       <HorizontalScroll />
       <TeamSection />
       <PlatformTour />
+      <WhyRemoteOffice />
       <Testimonial />
-
-      <div className="h-50 bg-white p-20"></div>
-
       <Footer />
     </div>
   )

@@ -11,6 +11,10 @@
   @apply text-gray-400 hover:text-secondary hover:underline;
 }
 
+.navbar-menu ul li {
+  @apply hover:cursor-pointer duration-150;
+}
+
 /* Sliding animation */
 .slide-enter {
   transform: translateX(100%);
@@ -52,4 +56,8 @@
   align-items: center;
   font-size: 2rem;
   color: white;
+}
+
+body {
+  overflow-x: hidden;
 }

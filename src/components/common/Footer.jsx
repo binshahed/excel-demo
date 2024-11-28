@@ -37,7 +37,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="col-span-2 text-white">
-              <p>
+              <p className="my-10 md:my-0">
                 Remote Office is an end-to-end remoteOps platform that helps you
                 build and manage global remote teams. We provide you with access
                 to top-vetted talents, handle compliance and HR issues, and
@@ -49,7 +49,7 @@ const Footer = () => {
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 my-10 footer-link">
-                <div>
+                <div className="col-span-3 md:col-span-1">
                   <ul role="list">
                     <li>
                       <span className="font-semibold">Popular Hires</span>
@@ -68,7 +68,7 @@ const Footer = () => {
                     </li>
                   </ul>
                 </div>
-                <div>
+                <div className="col-span-3 md:col-span-1">
                   <ul role="list">
                     <li>
                       <span className="font-semibold">Company</span>
@@ -84,7 +84,7 @@ const Footer = () => {
                     </li>
                   </ul>
                 </div>
-                <div>
+                <div className="col-span-3 md:col-span-1">
                   <ul role="list">
                     <li>
                       <span className="font-semibold">Trust Centre</span>

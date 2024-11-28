@@ -3,7 +3,7 @@ import icon from '../../assets/icons/button-icon.svg'
 
 const CommonCard = ({ title, content }) => {
   return (
-    <div className="flex justify-start items-center">
+    <div className="flex justify-start items-center" data-aos="fade-up">
       <div className="w-[80%]">
         <h3 className="text-[2.5rem] font-semibold">{title}</h3>
         <p className="font-light text-gray-300 my-8">{content}</p>

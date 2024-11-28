@@ -1,109 +1,104 @@
-import React, { useState, useEffect } from 'react';
-import { gsap } from 'gsap';
+import { useState } from 'react'
+import { FaArrowLeftLong, FaArrowRightLong } from 'react-icons/fa6'
+import { ImQuotesLeft } from 'react-icons/im'
+import { useTransition, animated } from 'react-spring'
+import { testimonials } from '../../data/testimonial'
+import personImg from '../../assets/images/person-img.jpg'
 
 const Testimonial = () => {
-  const [testimonialActive, setTestimonialActive] = useState(2);
-  const [prevTestimonial, setPrevTestimonial] = useState(2);
+  const [testimonialActive, setTestimonialActive] = useState(0)
+  const [direction, setDirection] = useState('next') // Track direction (next or prev)
 
-  const testimonials = [
-    {
-      text: "Leverage agile frameworks to provide a robust synopsis for high level overviews...",
-      name: "John Doe",
-      position: "CEO, ABC Inc.",
-    },
-    {
-      text: "Bring to the table win-win survival strategies to ensure proactive domination...",
-      name: "Winter Doe",
-      position: "CTO, XYZ Corp.",
-    },
-    {
-      text: "Capitalize on low hanging fruit to identify a ballpark value added activity...",
-      name: "John Wick",
-      position: "Product Manager, Fake Corp.",
-    },
-  ];
-
-  useEffect(() => {
-    if (testimonialActive > prevTestimonial || (testimonialActive === 1 && prevTestimonial === testimonials.length)) {
-      // Next Slide Animation
-      gsap.fromTo(
-        `.testimonial-${testimonialActive}`,
-        { x: 300, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1 }
-      );
-      gsap.fromTo(
-        `.testimonial-${prevTestimonial}`,
-        { x: 0, opacity: 1 },
-        { x: -300, opacity: 0, duration: 1 }
-      );
-    } else {
-      // Previous Slide Animation
-      gsap.fromTo(
-        `.testimonial-${testimonialActive}`,
-        { x: -300, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1 }
-      );
-      gsap.fromTo(
-        `.testimonial-${prevTestimonial}`,
-        { x: 0, opacity: 1 },
-        { x: 300, opacity: 0, duration: 1 }
-      );
-    }
-  }, [testimonialActive, prevTestimonial, testimonials.length]);
+  const handelNext = () => {
+    setDirection('next') // Set direction to next
+    setTestimonialActive((prevIndex) => (prevIndex + 1) % testimonials.length) // Wrap to the start
+  }
 
   const handlePrev = () => {
-    setPrevTestimonial(testimonialActive);
-    setTestimonialActive(testimonialActive === 1 ? testimonials.length : testimonialActive - 1);
-  };
+    setDirection('prev') // Set direction to prev
+    setTestimonialActive(
+      (prevIndex) =>
+        (prevIndex - 1 + testimonials.length) % testimonials.length, // Wrap to the end
+    )
+  }
 
-  const handleNext = () => {
-    setPrevTestimonial(testimonialActive);
-    setTestimonialActive(testimonialActive >= testimonials.length ? 1 : testimonialActive + 1);
-  };
+  const activeTestimonial = testimonials[testimonialActive]
+
+  // Setting up the transition for the sliding animation
+  const transitions = useTransition(activeTestimonial, {
+    key: activeTestimonial.id,
+    from: {
+      opacity: 0,
+      transform:
+        direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)',
+    }, // Slide in from right or left based on direction
+    enter: { opacity: 1, transform: 'translateX(0%)' }, // Slide in to the center
+    leave: {
+      opacity: 0,
+      transform:
+        direction === 'next' ? 'translateX(-100%)' : 'translateX(100%)',
+    }, // Slide out to left or right based on direction
+    config: { tension: 220, friction: 30 }, // Adjust the animation speed and smoothness
+  })
 
   return (
-    <div className="my-10 md:my-24 container mx-auto flex flex-col md:flex-row shadow-sm overflow-hidden">
-      <div className="relative w-full py-2 md:py-24 bg-indigo-700 md:w-1/2 flex flex-col items-center justify-center">
-        <div className="absolute top-0 left-0 z-10 grid-indigo w-16 h-16 md:w-40 md:h-40 md:ml-20 md:mt-24"></div>
-
-        <div className="relative text-2xl md:text-5xl py-2 px-6 md:py-6 md:px-1 md:w-64 md:mx-auto text-indigo-100 font-semibold leading-tight tracking-tight mb-0 z-20">
-          <span className="md:block">What Our</span>
-          <span className="md:block">Customers</span>
-          <span className="block">Are Saying!</span>
-        </div>
-
-        <div className="absolute right-0 bottom-0 mr-4 mb-4 flex">
-          <button
-            className="rounded-l-full border-r bg-gray-100 text-gray-500 focus:outline-none hover:text-indigo-500 font-bold w-12 h-10"
-            onClick={handlePrev}
-          >
-            &#8592;
-          </button>
-          <button
-            className="rounded-r-full bg-gray-100 text-gray-500 focus:outline-none hover:text-indigo-500 font-bold w-12 h-10"
-            onClick={handleNext}
-          >
-            &#8594;
-          </button>
-        </div>
-      </div>
-
-      <div className="bg-gray-100 md:w-1/2">
-        <div className="flex flex-col h-full relative">
-          <div className="h-full relative z-10">
-            <div className={`testimonial-${testimonialActive} testimonial`}>
-              <p className="text-gray-600 serif font-normal italic px-6 py-6 md:px-16 md:py-10 text-xl md:text-2xl">
-                {testimonials[testimonialActive - 1].text}
-              </p>
-              <p className="text-right text-gray-500 italic px-6 md:px-16">
-                - {testimonials[testimonialActive - 1].name}, {testimonials[testimonialActive - 1].position}
-              </p>
-            </div>
+    <div className="container py-20 text-primary">
+      <div className="flex flex-col justify-between ">
+        <div className="grid grid-cols-1 md:grid-cols-3">
+          <div className="col-span-3 md:col-span-1">
+            <h3 className="text-2xl md:text-[3rem] font-bold text-center md:text-left">
+              Clients say
+            </h3>
           </div>
+          <div className="col-span-3 md:col-span-2 relative min-h-[300px]">
+            {transitions((style, item) => (
+              <animated.div
+                style={{ ...style, position: 'absolute', width: '100%' }}
+              >
+                <div className="flex flex-col md:flex-row items-center md:items-start">
+                  <div className="px-5 mb-4 md:mb-0">
+                    <ImQuotesLeft className="text-6xl md:text-9xl p-0 mt-0 md:mt-[-20px]" />
+                  </div>
+                  <div className="text-center md:text-left">
+                    <p className="text-base md:text-xl leading-7 md:leading-9">
+                      {item.text}
+                    </p>
+                    <div className="mt-5 md:mt-20 flex flex-col md:flex-row justify-center items-center md:justify-start md:items-start">
+                      <div>
+                        <img
+                          src={personImg}
+                          className="h-14 w-14 rounded-full mr-4"
+                          alt=""
+                        />
+                      </div>
+                      <div>
+                        <h5 className="font-bold text-lg">{item.name}</h5>
+                        <h5 className="text-md">{item.position}</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </animated.div>
+            ))}
+          </div>
+        </div>
+        <div className="flex justify-center md:justify-between mt-10 z-40">
+          <button
+            onClick={handlePrev}
+            className="text-3xl md:text-4xl text-primary px-4 py-2 rounded-md"
+          >
+            <FaArrowLeftLong />
+          </button>
+          <button
+            onClick={handelNext}
+            className="text-3xl md:text-4xl text-primary px-4 py-2 rounded-md"
+          >
+            <FaArrowRightLong />
+          </button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Testimonial;
+export default Testimonial
