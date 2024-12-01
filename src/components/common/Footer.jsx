@@ -124,7 +124,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="bg-black text-white py-4">
+      <div className="bg-black text-white py-4 text-sm">
         <p className="text-center">©2024 Remote Office</p>
       </div>
     </div>

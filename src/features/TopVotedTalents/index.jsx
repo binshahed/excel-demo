@@ -20,11 +20,11 @@ function TopVotedTalentSection() {
     // Create ScrollTrigger
     ScrollTrigger.create({
       trigger: sectionElement,
-      start: 'top top', // Section becomes sticky when its top reaches the top of the viewport
-      end: 'bottom bottom', // Sticky behavior ends after the entire section is scrolled
-      pin: canvasElement, // Pin the sticky section
-      pinSpacing: false, // Disable extra spacing
-      scrub: true, // Smooth scroll effect
+      start: 'top top', 
+      end: 'bottom bottom', 
+      pin: canvasElement, 
+      pinSpacing: false, 
+      scrub: true, 
     })
 
     // Create fade out when leaving
@@ -32,8 +32,8 @@ function TopVotedTalentSection() {
       opacity: 0,
       scrollTrigger: {
         trigger: sectionElement,
-        start: 'bottom-=200 center', // Start fading out near the bottom of the section
-        end: 'bottom top', // Complete fade-out when the section is out of view
+        start: 'bottom-=200 center', 
+        end: 'bottom top', 
         scrub: true,
       },
     })
