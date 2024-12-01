@@ -27,7 +27,7 @@ const HeroContent = () => {
       </p>
 
       <div>
-        <CommonButton>Looking fot talent</CommonButton>
+        <CommonButton className="">Looking fot talent</CommonButton>
         <div className="flex justify-center md:justify-start">
           <img src={arrowIcon} alt="" />
 
