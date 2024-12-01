@@ -20,11 +20,11 @@ function TopVotedTalentSection() {
     // Create ScrollTrigger
     ScrollTrigger.create({
       trigger: sectionElement,
-      start: 'top top', 
-      end: 'bottom bottom', 
-      pin: canvasElement, 
-      pinSpacing: false, 
-      scrub: true, 
+      start: 'top top',
+      end: 'bottom bottom',
+      pin: canvasElement,
+      pinSpacing: false,
+      scrub: true,
     })
 
     // Create fade out when leaving
@@ -32,8 +32,8 @@ function TopVotedTalentSection() {
       opacity: 0,
       scrollTrigger: {
         trigger: sectionElement,
-        start: 'bottom-=200 center', 
-        end: 'bottom top', 
+        start: 'bottom-=200 center',
+        end: 'bottom top',
         scrub: true,
       },
     })
